@@ -1,0 +1,5 @@
+#!/bin/sh
+ip netns exec R iptables -vxnL
+ip netns exec R iptables -vxnL -t nat
+ip netns exec R iptables -D FORWARD -s 192.168.0.0/16 -p tcp --dport 1000:2000 -j REJECT
+ip netns exec R iptables -t nat -D POSTROUTING -s 192.168.1.0/28 -j ACCEPT

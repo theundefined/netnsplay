@@ -1,0 +1,3 @@
+#!/bin/sh
+ip netns add B
+ip netns exec B ip link set dev lo up

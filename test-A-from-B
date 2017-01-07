@@ -1,0 +1,2 @@
+#!/bin/sh
+ip netns exec B nc -n -v -w1 172.20.1.1 1234

@@ -1,0 +1,2 @@
+#!/bin/sh
+ip netns exec A nc -l -p 1234 -c "echo HELLO" &

@@ -1,0 +1,14 @@
+#!/bin/sh
+ip link add R-ppp0 type veth peer name A-eth0
+ip link set R-ppp0 netns R
+ip link set A-eth0 netns A
+
+ip link add R-eth0 type veth peer name B-eth0
+ip link set R-eth0 netns R
+ip link set B-eth0 netns B
+
+ip netns exec R ip link set dev R-ppp0 name ppp0 up
+ip netns exec R ip link set dev R-eth0 name eth0 up
+
+ip netns exec A ip link set dev A-eth0 name eth0 up
+ip netns exec B ip link set dev B-eth0 name eth0 up

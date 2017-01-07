@@ -1,0 +1,17 @@
+#!/bin/sh
+# router configuration
+ip netns exec R ip a a 172.20.1.2/24 dev ppp0
+ip netns exec R ip r a default via 172.20.1.1
+ip netns exec R ip a a 192.168.1.1/24 dev eth0
+ip netns exec R iptables -t nat -A POSTROUTING -o ppp0 -j MASQUERADE
+
+# A
+ip netns exec A ip a a 172.20.1.1/24 dev eth0
+
+# B
+ip netns exec B ip a a 192.168.1.10/24 dev eth0
+ip netns exec B ip r a default via 192.168.1.1
+
+ip netns exec B traceroute -n 172.20.1.1
+
+

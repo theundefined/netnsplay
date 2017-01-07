@@ -1,0 +1,4 @@
+#!/bin/sh
+ip netns add R
+ip netns exec R ip link set dev lo up
+ip netns exec R sysctl -w net.ipv4.conf.default.forwarding=1
