@@ -1,8 +1,8 @@
-# netnsplay
 few scripts to play with netns and simulate small test environment
 
 order of running:
 1. create environment for R, A, B:
+
 create-A
 create-B
 create-R
